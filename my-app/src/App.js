@@ -1,28 +1,45 @@
 import React, { Component } from 'react';
+import Validate  from './libs/validate'; 
 import pic01 from './images/pic_1.jpg'; 
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      number: ''};
+      number: 2};
   
   }
-  handleChange = (event) => {
-    this.setState(
-      {number: event.target.value}
-      );
-  }
+  // handleChange = (event) => {
+  //   let input = parseInt(event.target.value);
+  //   if(isNaN(input) || input <1 || input > 4){
+  //     alert('fdas')
+  //   }else {
+  //     this.setState({number: input})
+  //   } 
+  //   } 
+  
+    handleChange = (event) => {
+      let input = parseInt(event.target.value);
+      if(Validate.checkNum(input)===false){
+        alert('please enter correct number')
+      }else {
+        this.setState({number: input})
+      } 
+      event.preventDefault();
+      } 
+      
   render() {
-    let {number} = this.state
-    console.log(number)
+    let {number} = this.state;
+    console.log(number);
     return (
 
   <div className="container">
+    <p>Please a number between 1 and 4</p>
       <div  className="row">
          <div className="col-6">
          <form className="form-group">
             <label>Number of Column</label>
-            <input type="number" name="number"  min="1" max="4" defaultValue={2}  pattern="[1-4]*" value={this.state.number} onChange={this.handleChange}  className="form-control" />
+            <input type="number" name="number" value={number} onChange={this.handleChange}   className="form-control" />
         </form>
       </div>
     </div>
