@@ -5,7 +5,7 @@ class Validate {
 	}
 
 	static checkNum(value)  {
-		if(value < 1 || value > 6 || Validate.isNumber(value) === false ) {
+		if(value < 3 && value > 12 || Validate.isNumber(value) === false ) {
 			return false;
 		}
 
